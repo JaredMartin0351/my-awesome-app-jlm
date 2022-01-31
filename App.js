@@ -9,7 +9,7 @@ const app = express()
 
 const APP_PORT = process.env.APP_PORT || 3000; app.get('/', (req, res) => {
 
-    res.send('Hello Jared! Nice to see you!')
+    res.send('<h2>Hello Jared! Nice to see you!</h2>')
 
 }); app.listen(APP_PORT, () => {
     console.log(`Running app at port:${APP_PORT}`)
