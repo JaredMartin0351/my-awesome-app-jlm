@@ -18,11 +18,11 @@ jobs:
     - name: Env variables
       run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
     - name: Build the Docker-dev image
-      run: docker build . --file Dockerfile.dev --tag jaredmartin/my-awesome-app-test-jlm:latest .
+      run: docker build . --file Dockerfile.dev --tag jaredmartin/my-awesome-app-jlm:latest .
     - name: Add "date-stamp" tag to the image
-      run: docker image tag jaredmartin/my-awesome-app-test-jlm:latest jaredmartin/my-awesome-app-test-jlm:${{ env.date-stamp }}
+      run: docker image tag jaredmartin/my-awesome-app-jlm:latest jaredmartin/my-awesome-app-jlm:${{ env.date-stamp }}
     - name: Build container and run test
-      run: docker run jaredmartin/my-awesome-app-test-jlm:latest npm run test 
+      run: docker run jaredmartin/my-awesome-app-jlm:latest npm run test 
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -30,4 +30,4 @@ jobs:
         password: ${{ secrets.DOCKER_TOKEN }}
         
     - name: Push the Docker image to Docker Hub
-      run: docker push --all-tags jaredmartin/my-awesome-app-test-jlm
+      run: docker push --all-tags jaredmartin/my-awesome-app-jlm
