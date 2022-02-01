@@ -1,0 +1,24 @@
+name: Docker Dev Image CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DATE_STAMP: $(date +%s)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Env variables
+      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
+    - name: Build the Docker-dev image
+      run: docker build -f Dockerfile-dev -t jaredmartin/my-awesome-app-jlm:latest .
+    - name: Add "date-stamp" tag to the image
+      run: docker image tag jaredmartin/my-awesome-app-jlm:latest jaredmartin/my-awesome-app-jlm:${{ env.date-stamp }}
+    - name: Build container and run test
+      run: docker run jaredmartin/my-awesome-app-jlm:latest npm run test 
+    
