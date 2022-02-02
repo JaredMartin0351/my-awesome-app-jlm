@@ -1,33 +1,22 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build Prod Image & Deploy to Docker Hub
+name: Docker Test Image CI
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
   workflow_dispatch:
 
-env:
-  DATE_STAMP: $(date +%s)
 jobs:
-  build:
+  # This workflow contains a single job called "build"
+  test:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Env variables
-      run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
-    - name: Build the Docker-dev image
-      run: docker build . --file Dockerfile-dev --tag jaredmartin/my-awesome-app-jlm:latest .
-    - name: Add "date-stamp" tag to the image
-      run: docker image tag jaredmartin/my-awesome-app-jlm:latest jaredmartin/my-awesome-app-jlm:${{ env.date-stamp }}
-    - name: Build container and run test
-      run: docker run jaredmartin/my-awesome-app-jlm:latest npm run test 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_TOKEN }}
-        
-    - name: Push the Docker image to Docker Hub
-      run: docker push --all-tags jaredmartin/my-awesome-app-jlm
+          - uses: actions/checkout@v2
+          - name: Build the Docker-dev image using docker compose
+            run: docker-compose -f docker-compose-dev.yml up -d --build react-app-test

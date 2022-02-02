@@ -4,24 +4,16 @@ version: '3.9'
 
 services:
   react-app-deploy:
-    container_name: my-awesome-app-jlm
+    container_name: my-awesome-app-prod-jlm
 
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
-    ports:
-      - '80:8080'
     volumes:
-      - ./:/app
-      - ./node_modules:/app/node_modules
+      - '/app/node_modules'
+      - './:/app'
+    ports:
+      - "80:8080"
     
 
-  test:
-    container_name: my-awesome-app-jlm
-    depends_on:
-      - "web"
-    image: my-awesome-app-jlm_web
-    volumes:
-      - .:/app
-      - ./node_modules:/app/node_modules
-    command: ["npm", "test"]
+  

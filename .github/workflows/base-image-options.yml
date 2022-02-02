@@ -31,7 +31,9 @@ jobs:
       - name: Multi-line
         run:
           ls
-          echojava node-version:echo
+          echo 
+          java -version
+          echo
           git --version
           echo
           mvn --version
@@ -53,12 +55,11 @@ jobs:
           env -0
           echo
           
-        with: 
-          node-version: '14'
+       
       # Runs a single command using the runners shell
   
-      - run: npm install -g bats
+ 
 
       # Runs a set of commands using the runners shell
       
-      - run: bats -v
+     
