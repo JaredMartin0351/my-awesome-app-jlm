@@ -2,12 +2,12 @@
     "name": "my-awesome-app-jlm",
     "version": "1.1.0",
     "description": "Hello World in Node with Express",
-    "main": "app.js",
+    "main": "App.js",
     "scripts": {
-        "start": "node app.js",
+        "start": "node App.js",
         "test": "react-scripts test"
     },
-    "author": "Jared",
+    "author": "Jared Martin",
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.1",

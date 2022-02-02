@@ -1,13 +1,20 @@
+
+
+
 name: Docker Dev Image CI
+
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
+
+  push:
+    branches: [ main ]
+
   workflow_dispatch:
 
 env:
   DATE_STAMP: $(date +%s)
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,4 +33,3 @@ jobs:
               password: ${{ secrets.DOCKER_TOKEN }}
           - name: Push the Docker image to Docker Hub
             run: docker push --all-tags jaredmartin/my-awesome-app-jlm
-    
