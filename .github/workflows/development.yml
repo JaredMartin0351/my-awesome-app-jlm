@@ -16,7 +16,7 @@ jobs:
     - name: Env variables
       run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
     - name: Build the Docker-dev image
-      run: docker build -f Dockerfile-dev -t jaredmartin/my-awesome-app-jlm:latest .
+      run: docker build -f Dockerfile-dev -t jaredmartin/my-awesome-app-jlm-dev:latest .
     - name: Add "date-stamp" tag to the image
       run: docker image tag jaredmartin/my-awesome-app-jlm:latest jaredmartin/my-awesome-app-jlm:${{ env.date-stamp }}
     - name: Build container and run test
