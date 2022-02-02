@@ -1,12 +1,9 @@
 version: '3.9'
 
-
-
 services:
   react-app-dev:
     container_name: my-awesome-app-dev-jlm
-
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile.dev
     volumes:
@@ -14,7 +11,7 @@ services:
       - './:/app'
     ports:
       - "3002:8080"
-
+  
   react-app-test:
     container_name: my-awesome-app-test-jlm
     image: my-awesome-app-jlm_react-app-dev
