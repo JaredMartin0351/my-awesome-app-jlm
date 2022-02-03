@@ -17,7 +17,7 @@ jobs:
           - name: Env variables
             run: echo "date-stamp=${{env.DATE_STAMP}}" >> $GITHUB_ENV
           # - name: Build the Docker image
-            # run: docker build -f Dockerfile -t jaredmartin/my-awesome-app-prod-jlm:latest .
+            # run: docker build -f Dockerfile -t jared0351/my-awesome-app-prod-jlm:latest .
             # run: docker-compose -f docker-compose.yml up -d --build 
           # - name: Add "date-stamp" tag to the image.
           #   run: docker image tag my-awesome-app-jlm_react-app-deploy:latest my-awesome-app-jlm_react-app-deploy:${{ env.date-stamp }}
