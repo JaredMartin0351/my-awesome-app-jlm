@@ -1,9 +1,13 @@
 version: '3.9'
 
 services:
-  prod-web:
-    container_name: my-awesome-app-jlm-aws 
-    image: jaredmartin/my-awesome-app-jlm:latest
-    ports: 
-      - '80:80'
-  
+  react-app-deploy:
+    container_name: my-awesome-app-deploy-jlm
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '/app/node_modules'
+      - './:/app'
+    ports:
+      - "80:3000"
